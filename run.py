@@ -330,7 +330,7 @@ def get_mongo_coll(collection):
 
 def init_mongo_db(load_content=False):
     with app.app_context():
-        with app.open_resource(app.config["MONGO_CONTENT"], mode='r') as f:
+        with open(app.config["MONGO_CONTENT"], mode='r', encoding="utf-8") as f:
             collections = json.loads(f.read())
             for coll_name,coll_docs in collections.items():
                 coll = get_mongo_coll(coll_name)
